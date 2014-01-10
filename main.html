@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <!-- Thanks to MathJax examples for some of this code -->
+  <head>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript"
+            src="MathJax/MathJax.js?config=TeX-AMS-MML_SVG"
+            ></script>
+  </head>
+  <body>
+    <script>
+      MathJax.Hub.signal.Interest( function ( message ) {
+        if ( message[0] == 'End Update' ) qtapp.MathJaxDone();
+      } );
+      (function () {
+        var math = null;
+        MathJax.Hub.queue.Push( function () {
+          math = MathJax.Hub.getAllJax( "MathOutput" )[0];
+        } );
+        window.UpdateMath = function ( TeX ) {
+          MathJax.Hub.queue.Push(
+            [ "Text", math, "\\displaystyle{"+TeX+"}" ] );
+          return 'started';
+        }
+      })();
+    </script>
+    <div id="MathOutput" class="output">$${}$$</div>
+  </body>
+</html>
