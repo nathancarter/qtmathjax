@@ -32,7 +32,7 @@
     <item>
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>We ask MathJax to secretly convert it into SVG format, which we render here (distorted):</string>
+       <string>We ask MathJax to secretly convert it into SVG format, which we render here:</string>
       </property>
      </widget>
     </item>

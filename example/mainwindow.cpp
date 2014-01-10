@@ -27,7 +27,7 @@ void MainWindow::runMathJax ()
     svg->load( svgCode.toUtf8() );
     ui->plainTextEdit->setPlainText( svgCode );
     QSize s = svg->sizeHint();
-    ui->widget->setMinimumSize( QSize( s.width()*HT/s.height(), HT*1.1 ) );
-    ui->widget->setMaximumSize( QSize( s.width()*HT/s.height(), HT*1.1 ) );
+    ui->widget->setMinimumSize( QSize( s.width()*HT/s.height(), HT*1.2 ) );
+    ui->widget->setMaximumSize( QSize( s.width()*HT/s.height(), HT*1.2 ) );
     ui->widget->layout()->update();
 }
