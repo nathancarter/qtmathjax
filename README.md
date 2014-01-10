@@ -34,8 +34,8 @@ To use *QtMathJax*, follow these steps.
 3. Create an instance of the class and call the `TeX2SVG()` method
    in it.
    ```
-   TeXEngine engine;
-   // ...
+   TeXEngine engine;  
+   // ...  
    QString svgCode = engine.TeX2SVG( "ax^2+bx+c=0" );
    ```
 4. Render that SVG in any of [the ways Qt provides][qtsvg].
