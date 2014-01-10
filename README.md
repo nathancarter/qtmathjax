@@ -23,23 +23,30 @@ To use *QtMathJax*, follow these steps.
 
 1. In your `.pro` file, import *QtMathJax* by adding the following
    line.
+
 ```
 include(/path/to/qtmathjax.pri)
 ```
+
 2. In the source file where you need to use it, include the one
    class you need, `TeXEngine`.
-```cpp
+
+```
 #include "texengine.h"
 ```
+
 3. Create an instance of the class and call the `TeX2SVG()` method
    in it.
-```cpp
+
+```
 TeXEngine engine;
 // ...
 QString svgCode = engine.TeX2SVG( "ax^2+bx+c=0" );
 ```
+
 4. Render that SVG in any of [the ways Qt provides][qtsvg].
-```cpp
+
+```
 myQSvgWidget->load( svgCode.toUtf8() );
 ```
 
