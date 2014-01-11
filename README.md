@@ -53,9 +53,18 @@ without any changes needed.  It looks like this:
 
 ![Screenshot](./screenshot.png)
 
+# License
+
+This project is released under the [GPLv3] and [LGPLv3].
+It is my understanding that these are both compatible with the
+[Apache license] under which [MathJax] is released.
+
 [Qt]: http://qt-project.org
 [MathJax]: http://mathjax.org
 [qtsvg]: http://qt-project.org/doc/qt-5.0/qtsvg/svgrendering.html
 [submodule]: http://schacon.github.io/git/user-manual.html#submodules
 [example]: ./example/
+[GPLv3]: http://www.gnu.org/licenses/gpl-3.0.txt
+[LGPLv3]: http://www.gnu.org/licenses/lgpl-3.0.txt
+[Apache license]: https://github.com/mathjax/MathJax/blob/master/LICENSE
 
