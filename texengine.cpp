@@ -26,6 +26,8 @@ QString TeXEngine::TeX2SVG ( QString TeXcode )
     TeXcode = TeXcode.replace( "'", "\\'" ).replace( "\n", "\\\n" )
                      .replace( "\\", "\\\\" );
     running = true;
+//    qDebug() << "lastError = QString()";
+    lastError = QString();
 //    qDebug() << "running" << running;
     QVariant result =
             frame->evaluateJavaScript( "UpdateMath( '" + TeXcode + "' );" );
@@ -58,6 +60,17 @@ void TeXEngine::MathJaxDone ()
 {
     running = false;
 //    qDebug() << "running" << running;
+}
+
+void TeXEngine::MathJaxError ( QString errorMessage )
+{
+//    qDebug() << "lastError =" << errorMessage;
+    lastError = errorMessage;
+}
+
+QString TeXEngine::error ()
+{
+    return lastError;
 }
 
 void TeXEngine::addJSObject ()

@@ -12,7 +12,12 @@
   <body>
     <script>
       MathJax.Hub.signal.Interest( function ( message ) {
-        if ( message[0] == 'End Update' ) qtapp.MathJaxDone();
+        if ( message[0] == 'End Update' )
+          qtapp.MathJaxDone();
+        else if ( /error/.test( message[0] ) )
+          qtapp.MathJaxError( message[1] );
+//        else
+//          qtapp.MathJaxError( message.join( ';' ) );
       } );
       (function () {
         var math = null;

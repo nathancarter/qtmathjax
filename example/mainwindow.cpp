@@ -24,8 +24,13 @@ MainWindow::~MainWindow()
 void MainWindow::runMathJax ()
 {
     QString svgCode = engine.TeX2SVG( ui->lineEdit->text() );
-    svg->load( svgCode.toUtf8() );
-    ui->plainTextEdit->setPlainText( svgCode );
+    if ( engine.error().isEmpty() ) {
+        svg->load( svgCode.toUtf8() );
+        ui->plainTextEdit->setPlainText( svgCode );
+    } else {
+//        svg->load( QString( "<svg></svg>" ).toUtf8() );
+        ui->plainTextEdit->setPlainText( engine.error() );
+    }
     QSize s = svg->sizeHint();
     ui->widget->setMinimumSize( QSize( s.width()*HT/s.height(), HT*1.2 ) );
     ui->widget->setMaximumSize( QSize( s.width()*HT/s.height(), HT*1.2 ) );
