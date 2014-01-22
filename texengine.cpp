@@ -23,8 +23,8 @@ QWebView* TeXEngine::webView ()
 
 QString TeXEngine::TeX2SVG ( QString TeXcode )
 {
-    TeXcode = TeXcode.replace( "'", "\\'" ).replace( "\n", "\\\n" )
-                     .replace( "\\", "\\\\" );
+    TeXcode = TeXcode.replace( "\\", "\\\\" ).replace( "'", "\\'" )
+                     .replace( "\n", "\\\n" );
     running = true;
 //    qDebug() << "lastError = QString()";
     lastError = QString();
