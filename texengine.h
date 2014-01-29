@@ -20,10 +20,12 @@ public:
 private:
     QWebView* view;
     QWebFrame* frame;
-    bool running;
     QString lastError;
+    bool running;
+    bool isReady;
 private slots:
     void addJSObject ();
+    void ready ( bool loadSucceeded );
 };
 
 

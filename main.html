@@ -19,17 +19,16 @@
 //        else
 //          qtapp.MathJaxError( message.join( ';' ) );
       } );
-      (function () {
-        var math = null;
-        MathJax.Hub.queue.Push( function () {
-          math = MathJax.Hub.getAllJax( "MathOutput" )[0];
-        } );
-        window.UpdateMath = function ( TeX ) {
+      window.UpdateMath = function ( TeX ) {
+        try {
           MathJax.Hub.queue.Push(
-            [ "Text", math, "\\displaystyle{"+TeX+"}" ] );
-          return 'started';
+            [ "Text", MathJax.Hub.getAllJax( "MathOutput" )[0],
+              "\\displaystyle{"+TeX+"}" ] );
+        } catch ( e ) {
+          throw e + '\nmath = ' + math + '\nTeX = ' + TeX;
         }
-      })();
+        return 'started';
+      }
     </script>
     <div id="MathOutput" class="output">$${}$$</div>
   </body>
