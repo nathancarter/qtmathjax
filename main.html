@@ -21,9 +21,20 @@
       } );
       window.UpdateMath = function ( TeX ) {
         try {
+          if ( ( TeX.substr( 0, 2 ) == '$$' )
+            && ( TeX.substr( TeX.length-2 ) == '$$' ) )
+            TeX = "\\displaystyle{" + TeX.substr( 2, TeX.length-4 )
+                + "}";
+          else if ( ( TeX[0] == '$' )
+                 && ( TeX[TeX.length-1] == '$' ) )
+            TeX = "\\textstyle{" + TeX.substr( 1, TeX.length-2 )
+                + "}";
+          else
+            TeX = "\\displaystyle{" + TeX + "}";
           MathJax.Hub.queue.Push(
-            [ "Text", MathJax.Hub.getAllJax( "MathOutput" )[0],
-              "\\displaystyle{"+TeX+"}" ] );
+            [ "Text",
+              MathJax.Hub.getAllJax( "MathOutput" )[0],
+              TeX ] );
         } catch ( e ) {
           throw e + '\nmath = ' + math + '\nTeX = ' + TeX;
         }
