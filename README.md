@@ -45,6 +45,19 @@ such as saving it to a file for use outside your app.  Example:
 myQSvgWidget->load( svgCode.toUtf8() );
 ```
 
+See below for an example app.
+
+# Asynchronous
+
+There is also an API for asynchronous computation, not yet
+thoroughly documented here.  One calls ```engine.asyncTeX2SVG()```
+to enqueue an expression for typesetting, then later checks back
+using ```engine.hasComputed()``` to see if the typesetting is
+complete.  If so, then a call to ```engine.TeX2SVG()``` will not
+spin the event loop at all, but return immediately with a value
+stored in cache from the asynchronous computation.  See the source
+for details.
+
 # Example
 
 The repository comes with a sample app in the [example] subfolder.
