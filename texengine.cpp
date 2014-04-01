@@ -19,6 +19,11 @@ TeXEngine::TeXEngine ()
     cache.setMaxCost( 10000000 );
 }
 
+TeXEngine::~TeXEngine ()
+{
+    delete view;
+}
+
 QWebView* TeXEngine::webView ()
 {
     return view;

@@ -13,6 +13,7 @@ class TeXEngine : QObject
     Q_OBJECT
 public:
     TeXEngine ();
+    ~TeXEngine ();
     // compute immediately, waiting for result (via processEvents()) before returning it:
     QString TeX2SVG ( QString TeXcode );
     // queue computation for later iff it hasn't yet been done; cache result when done:
