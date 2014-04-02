@@ -65,9 +65,8 @@ QString TeXEngine::TeX2SVG ( QString TeXcode )
         computeNextInBackground();
         return QString();
     }
-    while ( running ) {
+    while ( running )
         QCoreApplication::processEvents( QEventLoop::AllEvents, 20 );
-    }
     computeNextInBackground();
     QString *ptr = cache[TeXcode];
     return ptr ? QString( ptr->constData() ) : QString();
@@ -85,7 +84,7 @@ void TeXEngine::computeNextInBackground ()
 {
     if ( queue.isEmpty() || running )
         return;
-    currentInput = queue.takeLast();
+    currentInput = queue.first();
     QString TeXcode = currentInput;
     TeXcode = TeXcode.replace( "\\", "\\\\" ).replace( "'", "\\'" )
                      .replace( "\n", "\\\n" );
@@ -106,6 +105,7 @@ void TeXEngine::computeNextInBackground ()
 void TeXEngine::MathJaxDone ()
 {
     running = false;
+    queue.takeFirst();
     QWebElementCollection es = frame->findAllElements( "svg" );
     QString toLoad;
     QString defs;
@@ -122,6 +122,7 @@ void TeXEngine::MathJaxDone ()
             cache.insert( currentInput, new QString( result ), result.count() );
         }
     }
+    computeNextInBackground();
 }
 
 void TeXEngine::MathJaxError ( QString errorMessage )
