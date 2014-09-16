@@ -84,7 +84,11 @@ void TeXEngine::computeNextInBackground ()
 {
     if ( queue.isEmpty() || running )
         return;
-    currentInput = queue.first();
+	/*
+	if called from TeX2SVG() the list may be empty and
+	crash the program attempting to dequeue the non-existing first element
+	*/
+    if(!queue.isEmpty) currentInput = queue.first();
     QString TeXcode = currentInput;
     TeXcode = TeXcode.replace( "\\", "\\\\" ).replace( "'", "\\'" )
                      .replace( "\n", "\\\n" );
