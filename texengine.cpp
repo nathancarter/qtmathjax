@@ -5,13 +5,13 @@
 #include <QWebElement>
 #include <QDir>
 
+
 TeXEngine::TeXEngine ()
     : running( false ), isReady( false )
 {
     view = new QWebView( NULL );
     connect( view, SIGNAL(loadFinished(bool)), this, SLOT(ready(bool)) );
     QString toLoad = "qrc:/main.html";
-    qDebug() << QUrl(toLoad);
     view->load( QUrl( toLoad ) );
     frame = view->page()->mainFrame();
     connect( frame, SIGNAL(javaScriptWindowObjectCleared()),
@@ -59,9 +59,7 @@ QString TeXEngine::TeX2SVG ( QString TeXcode )
                              "    TeX2SVG_result = e + '';"
                              "}"
                              "TeX2SVG_result" ).arg( TeXcode );
-
     QVariant result = frame->evaluateJavaScript( toRun );
-
     if ( result.toString() != "started" ) {
         lastError = result.toString();
         computeNextInBackground();
@@ -107,8 +105,6 @@ void TeXEngine::computeNextInBackground ()
 void TeXEngine::MathJaxDone ()
 {
     running = false;
-    //if called from synchronous mode
-    //queue might be empty and crash app
     if(!queue.isEmpty()) queue.takeFirst();
     QWebElementCollection es = frame->findAllElements( "svg" );
     QString toLoad;
