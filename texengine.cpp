@@ -105,7 +105,7 @@ void TeXEngine::computeNextInBackground ()
 void TeXEngine::MathJaxDone ()
 {
     running = false;
-    queue.takeFirst();
+    if(!queue.isEmpty()) queue.takeFirst();
     QWebElementCollection es = frame->findAllElements( "svg" );
     QString toLoad;
     QString defs;
