@@ -68,7 +68,7 @@ QString TeXEngine::TeX2SVG ( QString TeXcode )
     while ( running )
         QCoreApplication::processEvents( QEventLoop::AllEvents, 20 );
     computeNextInBackground();
-    QString *ptr = cache[TeXcode];
+    QString *ptr = cache[currentInput];
     return ptr ? QString( ptr->constData() ) : QString();
 }
 
